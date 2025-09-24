@@ -167,5 +167,5 @@ class HierarchicalClassifier:
 classifier = HierarchicalClassifier(stage1_model, abnormal_model, normal_model,
                                     stage1_classes, abnormal_classes, normal_classes)
 
-result = classifier.predict("MelSpectrograms/00 - Abnormal/00-2 - Dehydration mode noise/01.png")
-print(result["final_prediction"])
+# result = classifier.predict("MelSpectrograms/00 - Abnormal/00-2 - Dehydration mode noise/01.png")
+# print(result["final_prediction"])
