@@ -2,7 +2,7 @@ import tensorflow as tf
 from keras._tf_keras.keras.utils import image_dataset_from_directory
 from keras._tf_keras.keras import Sequential, layers, models
 import numpy as np
-
+import os
 img_size = (224, 224)
 batch_size = 32
 AUTOTUNE = tf.data.AUTOTUNE
@@ -164,8 +164,17 @@ class HierarchicalClassifier:
             "final_prediction": f"{main_class} → {sub_class}"
         }
 
-classifier = HierarchicalClassifier(stage1_model, abnormal_model, normal_model,
-                                    stage1_classes, abnormal_classes, normal_classes)
+# classifier = HierarchicalClassifier(stage1_model, abnormal_model, normal_model,
+#                                     stage1_classes, abnormal_classes, normal_classes)
 
 # result = classifier.predict("MelSpectrograms/00 - Abnormal/00-2 - Dehydration mode noise/01.png")
 # print(result["final_prediction"])
+
+
+# Save models after training
+os.makedirs("saved_models", exist_ok=True)
+stage1_model.save("saved_models/stage1_model.h5")
+abnormal_model.save("saved_models/abnormal_model.h5")
+normal_model.save("saved_models/normal_model.h5")
+
+print("✅ Models saved in 'saved_models/' folder")
